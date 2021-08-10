@@ -3,12 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const { MongoClient } = require('mongodb');
-var mongoose = require("mongoose");
 require("dotenv").config()
+var mongoose = require("mongoose");
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var testRouter = require('./routes/test');
 
 var app = express();
 
@@ -31,8 +30,9 @@ mongoose.connect( MONGOURI, {useNewUrlParser: true, useUnifiedTopology: true}, e
   else console.log("Connected to mongodb. Ok.")
 });
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', indexRouter)
+
+app.use('/', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

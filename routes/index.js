@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Account = require('../model/account'); 
 var Transaction = require('../model/transaction');
+var authRouter = require('./auth'); 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -45,11 +46,7 @@ router.post('/dummy', (req, res) => {
   3. Transaction - Payments 
 */
 
-router.use('/auth', (req, res, next) => {
-  console.log("Auth - Login/Signup/Logout");
-  // setup account
-  res.send("auth")
-});
+router.use('/auth', authRouter);
 
 router.use('/', (req, res, next) => {
   console.log("Authorize");

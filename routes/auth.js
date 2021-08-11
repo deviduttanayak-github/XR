@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 var router = express.Router();
 var Account = require('../model/account'); 
-var Transaction = require('../model/transaction');
+// var Transaction = require('../model/transaction');
 
 // utils --------------------------------
 const HASHKEY = 8;
@@ -58,15 +58,12 @@ router.post('/login', async (req, res) => {
         let acc = await Account.findOne({email : data.email});
         let isMatch = null;
         if(acc) isMatch = await bcrypt.compare(data.password, acc.password)
-        console.log("A:", acc, " im:", isMatch);
         if(!acc || !isMatch){
             res.send(msgwd(0, "Incorrect Credentials"));
         }
         else{
-            console.log("here")
             let uid = acc._id;
             let token = genToken(uid);
-            console.log(" t:", token);
             res.cookie('jwt', token, {
                 maxAge: EXPDATE,
                 httpOnly: true
@@ -79,6 +76,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/logout', (req, res) => {
+    res.clearCookie('jwt');
+    res.end();
+});
 
 
 

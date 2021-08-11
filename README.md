@@ -1,2 +1,1 @@
-# Divu Bhaimya Project
-Zorr Laga K Haisha
+Project for zeta-hacks

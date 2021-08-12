@@ -46,6 +46,10 @@ var account = new Schema({
         type : Number,
         default : 0
     },
+    balance : {
+        type : Number,
+        default : 2000
+    },
     transaction : [{
         tid : {
             type : String,

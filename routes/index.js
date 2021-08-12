@@ -5,6 +5,7 @@ var Account = require('../model/account');
 var Transaction = require('../model/transaction');
 var authRouter = require('./auth'); 
 var accountRouter = require('./accountRoutes');
+var paymentRoutes = require('./payment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -97,9 +98,6 @@ router.use('/', (req, res, next) => {
 
 router.use('/account', accountRouter);
 
-router.use('/payment', (req, res, next) => {
-  console.log("Payment");
-  res.send("Payment");
-});
+router.use('/payment', paymentRoutes);
 
 module.exports = router;

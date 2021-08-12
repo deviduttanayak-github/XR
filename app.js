@@ -22,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Database Connection
 const MONGOURI = process.env.mongo_uri;
@@ -36,7 +36,7 @@ mongoose.connect( MONGOURI, {useNewUrlParser: true, useUnifiedTopology: true}, e
 
 app.use('/api', indexRouter)
 
-app.use('/', testRouter);
+app.use('*', express.static('./client/build'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

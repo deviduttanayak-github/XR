@@ -10,6 +10,7 @@ var account = new Schema({
     },
     name : {
         type : String,
+        default : "Guest",
         require : true
     },
     email : {

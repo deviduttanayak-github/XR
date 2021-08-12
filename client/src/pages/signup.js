@@ -24,13 +24,18 @@ function Signup() {
         };
         pack.email = inputs[0].value;
         pack.password = inputs[1].value;
-        console.log(pack);
+        if(pack.email == "" || pack.password == "") {
+            alert("Empty Inputs");
+            return;
+        }
+        // console.log(pack);
         axios.post(BASEURL + '/auth/signup', pack)
             .then( res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setmsg(res.data);
             })
             .catch( err => {
+                console.log("signup:", err);
                 setmsg({msg: 0, data : "Something went wrong"});
             })
     }

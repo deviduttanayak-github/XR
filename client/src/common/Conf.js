@@ -1,7 +1,6 @@
 const BASEURL = "http://localhost:5000/api";
 
 const show = (msg) => {
-    console.log("H:", msg);
     if(msg.data == null){
         if(msg.msg == "SUCCESS"){
             return (

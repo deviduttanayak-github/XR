@@ -68,7 +68,13 @@ router.post('/login', async (req, res) => {
                 maxAge: EXPDATE,
                 httpOnly: true
             });
-            res.send(msg(1));
+            res.cookie('name', acc.name.split(" ")[0], {
+                maxAge: EXPDATE,
+                httpOnly: false
+            });
+            res.send({
+                msg : "SUCCESS", name : acc.name.split(" ")[0]
+            });
         }
     }
     catch(e) {
@@ -78,56 +84,8 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.clearCookie('jwt');
-    res.end();
+    res.clearCookie('name');
+    res.send(msgwd(1, "Done"));
 });
-
-
-
-// const token = await user.generateAuthToken()
-
-//         res.cookie('jwt', token, {
-//             expires: new Date(Date.now() + 60 * 60 * 1000),
-//             httpOnly: true
-//         });
-
-//         await user.save()
-//         res.status(201).redirect('/dashBoard');
-
-        
-
-// userSchema.methods.generateAuthToken = async function () {
-
-//     const user = this
-//     const token = jwt.sign({_id: user.id.toString()}, process.env.JWT_SECRET)
-
-//     //add to user token
-//     user.tokens = user.tokens.concat({token})
-//     await user.save() //saving them to database
-
-//     return token
-
-// }
-
-// const token = req.cookies.jwt ;
-
-//         // console.log(`cookie token ${token}`);
-
-//         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-//         const user = await User.findOne({_id: decoded._id, 'tokens.token': token})
-
-//         // console.log('in middleware');
-//         // console.log(`user ${user}`);
-
-//         if(!user){
-//             throw new Error()
-//         }
-
-//         req.token = token
-//         req.user = user
-//         next()
-
-// ///////////
-
-
         
 module.exports = router;

@@ -71,7 +71,8 @@ router.use('/auth', authRouter);
 
 // check for account 
 router.use('/', (req, res, next) => {
-  console.log("Authorize");
+  console.log("Authorize", req.body);
+  console.log("Cookie", req.cookies);
   let token = req.cookies.jwt;
   if(token){
     let uid = parseId(token);

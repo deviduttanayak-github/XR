@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import './style.css';
 import { BASEURL, show } from '../common/Conf';
 
-function Signup() {
+function Login(props) {
     
     const [msg, setmsg] = useState(null);
 
@@ -23,10 +23,16 @@ function Signup() {
         console.log(pack);
         axios.post(BASEURL + '/auth/login', pack)
             .then( res => {
-                console.log(res.data);
+                if(res.data.msg === "SUCCESS"){
+                    props.setuser({
+                        "email" : pack.email,
+                        "name" : res.data.name
+                    });
+                }
                 setmsg(res.data);
             })
             .catch( err => {
+                console.log("login:", err);
                 setmsg({msg: 0, data : "Something went wrong"});
             })
     }
@@ -70,4 +76,4 @@ function Signup() {
     )
 };
 
-export default Signup
+export default Login

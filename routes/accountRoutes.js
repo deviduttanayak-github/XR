@@ -37,8 +37,10 @@ const queryUpdate = async ( query) => {
 
 router.get('/profile', async (req, res) => {
     let uid = parseId(req.cookies.jwt);
+    console.log("account/profile", uid);
     Account.findById(uid)
         .then( account => {
+            // console.log(account);
             res.send(account);
         })
         .catch( err => {

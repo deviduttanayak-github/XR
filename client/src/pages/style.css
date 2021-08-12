@@ -1,0 +1,9 @@
+.make-center{
+    background-color: violet;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 50vh; */
+}

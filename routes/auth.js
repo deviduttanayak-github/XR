@@ -33,17 +33,17 @@ const parseId = (token) => {
 
 router.post('/signup', async (req, res, next) => {
     let data = req.body;
-    console.log(data);
+    // console.log(data);
     data.password = await bcrypt.hash(data.password, HASHKEY);
-    console.log(data);
+    // console.log(data);
     var account = new Account(data);
     account.save()
         .then(acc => {
-            console.log("M:", acc);
+            // console.log("M:", acc);
             res.send(msg(1));
         })
         .catch( err => {
-            console.log("E:", err);
+            // console.log("E:", err);
             if(err.code == 11000){
                 res.send(msgwd(0, "Given email already has an account"));
             }
@@ -53,7 +53,7 @@ router.post('/signup', async (req, res, next) => {
 
 router.post('/login', async (req, res) => {
     let data = req.body;
-    console.log(data);
+    // console.log(data);
     try{
         let acc = await Account.findOne({email : data.email});
         let isMatch = null;

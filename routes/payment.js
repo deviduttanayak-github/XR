@@ -41,6 +41,23 @@ router.post('/pay', async (req, res) => {
         purpose = req.body.purpose ? req.body.purpose : "unspecified";
     let uid = parseId(req.cookies.jwt);
     let debit_id = uid;
+    try{
+        let acc = await Account.findOne({email : credit_id});
+        if(!acc){
+            res.send(msgwd(0, "Invalid email"));
+        }
+        else if(acc.acid == null){
+            res.send(msgwd(0, "Receiver Account isn't activated"));
+        }
+        else{
+            credit_id = acc.acid;
+        }
+    }
+    catch(e){
+        console.log("err : ", e);
+        res.send(msgwd(0, "Something went wrong"));
+    }
+    console.log("ZZ:", credit_id, debit_id, amount);
     var session = await mongoose.startSession();
     session.startTransaction();
     try{

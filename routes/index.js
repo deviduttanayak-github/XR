@@ -6,6 +6,7 @@ var Transaction = require('../model/transaction');
 var authRouter = require('./auth'); 
 var accountRouter = require('./accountRoutes');
 var paymentRoutes = require('./payment');
+var publicRoutes = require('./public');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -59,6 +60,9 @@ const parseId = (token) => {
 }
 // utils ----------------------------------------------- end --
 
+// public -------------- APIs
+router.use('/public', publicRoutes);
+// public -------------- APIs -- end --
 
 /*
   // TODO:

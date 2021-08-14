@@ -1,4 +1,5 @@
-const BASEURL = "http://localhost:5000/api";
+// const BASEURL = "http://localhost:5000/api";
+const BASEURL = "/api";
 
 const show = (msg) => {
     if(msg.data == null){

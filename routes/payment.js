@@ -57,7 +57,7 @@ router.post('/pay', async (req, res) => {
         console.log("err : ", e);
         res.send(msgwd(0, "Something went wrong"));
     }
-    console.log("ZZ:", credit_id, debit_id, amount);
+    // console.log("ZZ:", credit_id, debit_id, amount);
     var session = await mongoose.startSession();
     session.startTransaction();
     try{

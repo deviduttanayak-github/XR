@@ -3,6 +3,7 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 var Account = require('../model/account'); 
 var Transaction = require('../model/transaction');
+var Monitor = require('../model/monitor');
 var authRouter = require('./auth'); 
 var accountRouter = require('./accountRoutes');
 var paymentRoutes = require('./payment');
@@ -59,6 +60,25 @@ const parseId = (token) => {
   return decoded;
 }
 // utils ----------------------------------------------- end --
+
+// Monitor requests ----------
+var count = 0;
+setInterval(() => {
+  if(count > 0){
+    let rc = count; count = 0;
+    // console.log("Rc:", rc);
+    Monitor.findByIdAndUpdate({ _id : "6117c22745422c3508ee83b8" }, { '$inc' : { "requests" : rc}}, (err, res) => {
+      if(err){
+        count += rc;
+      }
+    })
+  }
+}, 5000);
+router.use('/', (req, res, next) => {
+  count += 1;
+  next();
+});
+// Monitor requests ---------- end --
 
 // public -------------- APIs
 router.use('/public', publicRoutes);

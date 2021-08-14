@@ -5,6 +5,8 @@ import Auth from './Auth';
 import Login from './login'
 import Profile from './profile';
 import Payment from './payment';
+import Home from './home';
+import Navbar from './navbar';
 import axios from 'axios';
 import { BASEURL, show } from '../common/Conf';
 
@@ -36,26 +38,27 @@ function Routes() {
 
     return (
         <div>
-            {/* temp */}
-            <div className="">
+            {/* temp -- replace with navbar */}
+            {/* <div className="">
                 <h3> <span className="badge bg-secondary">
                         {
                             user ? ("Hello " + user.name) : "You haven't signed in"
                         }
                     </span> 
                 </h3>
-            </div>
-
+            </div> */}
+            <Navbar user={user} />
             <Switch>
                 <Route exact path="/">
-                    <h1>Home</h1> 
-                    <ul>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/signup">Signup</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
-                        <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="/payment">Payment</Link></li>
-                    </ul>
+                    <Home />
+                    <div className="container-fluid">
+                        <span className="badge bg-primary m-2">Links</span>
+                        <Link to="/login" className="badge bg-secondary m-1">Login</Link>
+                        <Link to="/signup" className="badge bg-secondary m-1">Signup</Link>
+                        <Link to="/profile" className="badge bg-secondary m-1">Profile</Link>
+                        <Link to="/logout" className="badge bg-secondary m-1">Logout</Link>
+                        <Link to="/payment" className="badge bg-secondary m-1">Payment</Link>
+                    </div>
                 </Route>
                 <Route exact path="/login"> <Login setuser={setuser} /> </Route>
                 <Route exact path="/signup" component={Signup} />

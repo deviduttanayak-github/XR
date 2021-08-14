@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 var Account = require('../model/account'); 
+const Monitor = require('../model/monitor');
 var Transaction = require('../model/transaction');
 
 // utils --------------------------------
@@ -57,6 +58,23 @@ router.get('/search', (req, res) => {
     }
     else{
         res.send(msgwd(0, "Sorry the search parameter isn't available"));
+    }
+});
+
+router.get('/details', async (req, res) => {
+    try{
+        let acc = await Account.countDocuments({});
+        let trans = await Transaction.countDocuments({});
+        let tamt = await Transaction.aggregate([{ $group : {
+            _id : null, amt : { $sum : "$amount" }
+        }}]);
+        let mon = await Monitor.findById({ _id : "6117c22745422c3508ee83b8" });
+        // console.log(trans, " ", acc, " ", tamt);
+        res.send(msgwd(1, {accounts : acc, transactions : trans, tamount : tamt[0].amt, requests : mon.requests}));
+    }
+    catch(e){
+        // console.log(e);
+        res.send(msgwd(0, "Something went wrong"));
     }
 });
 

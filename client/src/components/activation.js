@@ -20,10 +20,10 @@ function Activation(props) {
                 else pack[key] = 0;
             }
         }
-        console.log(pack);
+        // console.log(pack);
         axios.post(BASEURL + '/account/activate', pack)
             .then( res => {
-                console.log(res);
+                // console.log(res);
                 setmsg(res.data);
                 if(res.data.msg == "SUCCESS") setok(true);
             })

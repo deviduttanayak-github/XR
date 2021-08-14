@@ -37,12 +37,12 @@ function Payment() {
         let email = document.getElementById("payment-mail").value;
         let amt = document.getElementById("payment-amt").value;
         let note = document.getElementById("payment-note").value;
-        console.log(email, " ", amt);
+        // console.log(email, " ", amt);
         let pack = {credit_id : email, amount : amt, purpose : note};
-        console.log(pack);
+        // console.log(pack);
         axios.post(BASEURL + '/payment/pay', pack)
             .then( res => {
-                console.log(res);
+                // console.log(res);
                 setmsg(res.data);
             })
             .catch( err => {

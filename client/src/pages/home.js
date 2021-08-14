@@ -31,10 +31,8 @@ function Home() {
         let mail = document.getElementById("pub-mail").value;
         if(!typying) settypying(true);
         let pack = { pref : mail, where : "email" };
-        console.log(pack);
         axios.get(BASEURL + '/public/search', { params : pack})
             .then( res => {
-                console.log(res);
                 let temp = []; let arr = res.data.data;
                 recent2 = arr;
                 for(let i=0; i<arr.length; i++){
@@ -134,7 +132,6 @@ function Home() {
 }
 
 const Suggestions = (props) => {
-    console.log("SS:", props);
     return (
         <div className="d-flex flex-column mb-1 mxh">
             {

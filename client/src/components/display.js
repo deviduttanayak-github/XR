@@ -43,7 +43,7 @@ function Display(props) {
     const [profile, setprofile] = useState(null);
 
     useEffect(() => {
-        console.log("D:", props)
+        // console.log("D:", props)
         setprofile(props.profile);
     }, [])
 

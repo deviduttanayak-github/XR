@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Database Connection
 const MONGOURI = process.env.mongo_uri;
-console.log("URI:", MONGOURI);
+// console.log("URI:", MONGOURI);
 mongoose.connect( MONGOURI, {useNewUrlParser: true, useUnifiedTopology: true}, err => {
   if(err){
     console.log(err);

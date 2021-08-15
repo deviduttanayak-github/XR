@@ -57,7 +57,7 @@ function Profile() {
                 </div>
             </div>
 
-            {/* <Display /> */}
+            {/* <Analytics profile={profile} /> */}
             {/* <Activation profile={{
                 acid : null
             }} /> */}

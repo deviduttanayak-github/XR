@@ -60,6 +60,10 @@ router.post('/activate', async (req, res) => {
             updates.acid = acid;
             Account.updateOne({ "_id" : uid}, { "$set" : updates } )
                 .then( new_acc => {
+                    res.cookie('name', new_acc.name.split(" ")[0], {
+                        maxAge: EXPDATE,
+                        httpOnly: false
+                    });
                     res.send(msgwd(1, "Activation successful"));
                 })
                 .catch( err => {

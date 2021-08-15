@@ -2,42 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {show} from '../common/Conf'
 import './style.css'
 
-var demo = {
-    acid: '611535be451f1139dc49278a',
-    name: 'Buyer Rex',
-    friends: ["Ramo", "Lex"],
-    monthlyIncome: 99000,
-    monthlyBudget : 0,
-    monthlySavings: 20000,
-    utility: 0,
-    balance: 1455,
-    _id: "611535be451f1139dc49278a",
-    email: 'buyer@gmail.com',
-    password: '$2b$08$Ce4q9eIg3f7FKmwHsTQZr.mi.qBDRx9k/xvPt6ppHXj6R0qWG4zte',
-    otherIncome: [],
-    transaction: [
-      {
-        time: "2021-08-12T15:20:50.912Z",
-        _id: "61153ca2dbca6540a46afa5f",
-        tid: 'wahXFasjaQSZrit',
-        mode: 'debit',
-        amount: 45,
-        purpose: 'Food'
-      },
-      {
-        time: "2021-08-12T15:20:50.912Z",
-        _id: "61153ca2dbca6540a46afa5f",
-        tid: 'wahXFasjaQSZrit',
-        mode: 'credit',
-        amount: 105,
-        purpose: 'Udhari'
-      }
-    ],
-    createdAt: "2021-08-12T14:52:46.386Z",
-    updatedAt: "2021-08-12T15:22:10.571Z",
-    __v: 1
-};
-
 function Display(props) {
 
     const [profile, setprofile] = useState(null);
